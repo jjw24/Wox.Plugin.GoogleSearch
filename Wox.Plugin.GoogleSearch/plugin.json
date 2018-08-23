@@ -1,0 +1,12 @@
+﻿{
+  "ID":"4579F00804F94B54B23CF207856E495F",
+  "ActionKeyword":"gs",
+  "Name":"Google Search Plus",
+  "Description":"Wox plugin for searching Google and navigating directly to the search results.",
+  "Author":"mikemorain",
+  "Version":"0.1.0",
+  "Language":"csharp",
+  "Website":"http://www.getwox.com",
+  "IcoPath": "images\\googleSearch.png",
+  "ExecuteFileName":"Wox.Plugin.GoogleSearch.dll"
+}
