@@ -7,6 +7,6 @@
   "Version":"0.1.0",
   "Language":"csharp",
   "Website":"http://www.getwox.com",
-  "IcoPath": "images\\googleSearch.png",
+  "IcoPath": "images\\google.png",
   "ExecuteFileName":"Wox.Plugin.GoogleSearch.dll"
 }
