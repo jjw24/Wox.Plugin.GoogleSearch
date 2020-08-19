@@ -11,11 +11,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>.\Output\Debug\Wox.Plugin.GoogleSearch</OutputPath>
+    <OutputPath>..\Output\Debug\Wox.Plugin.GoogleSearch</OutputPath>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath>.\Output\Release\Wox.Plugin.GoogleSearch</OutputPath>
+    <OutputPath>..\Output\Release\Wox.Plugin.GoogleSearch</OutputPath>
   </PropertyGroup>
   
   <ItemGroup>
