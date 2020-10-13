@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -50,6 +50,8 @@ namespace Wox.Plugin.GoogleSearch
 
                 if (link == null || title == null)
                     continue;
+
+                title = title.Replace("&amp;", "&");
 
                 Console.WriteLine("Title: " + title);
                 Console.WriteLine("Link: " + link);
