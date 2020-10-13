@@ -45,8 +45,12 @@ namespace Wox.Plugin.GoogleSearch
             
             foreach (var e in allElementsWithClassR)
             {
-                var link = e.QuerySelector("a").Attributes.First(a => a.Name == "href").Value;
-                var title = e.QuerySelector("h3").InnerText;
+                var link = e.QuerySelector("a").Attributes.FirstOrDefault(a => a.Name == "href")?.Value;
+                var title = e.QuerySelector("h3")?.InnerText;
+
+                if (link == null || title == null)
+                    continue;
+
                 Console.WriteLine("Title: " + title);
                 Console.WriteLine("Link: " + link);
 
