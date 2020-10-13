@@ -40,13 +40,19 @@ namespace Wox.Plugin.GoogleSearch
             
             htmlDoc.LoadHtml(response.Content.ReadAsStringAsync().Result);
 
-            var allElementsWithClassR = htmlDoc.QuerySelectorAll("div.r");
+            var allElementsWithClassG = htmlDoc.QuerySelectorAll("div.g");
 
             
-            foreach (var e in allElementsWithClassR)
+            foreach (var e in allElementsWithClassG)
             {
-                var link = e.QuerySelector("a").Attributes.First(a => a.Name == "href").Value;
-                var title = e.QuerySelector("h3").InnerText;
+                var link = e.QuerySelector("a").Attributes.FirstOrDefault(a => a.Name == "href")?.Value;
+                var title = e.QuerySelector("h3")?.InnerText;
+
+                if (link == null || title == null)
+                    continue;
+
+                title = title.Replace("&amp;", "&");
+
                 Console.WriteLine("Title: " + title);
                 Console.WriteLine("Link: " + link);
 
