@@ -1,4 +1,5 @@
 ﻿using Flow.Launcher.Plugin;
+using Flow.Launcher.Plugin.SharedCommands;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,7 +30,7 @@ namespace Wox.Plugin.GoogleSearch
                     {
                         try
                         {
-                            Process.Start(s.Url);
+                            s.Url.NewBrowserWindow();
                             return true;
                         }
                         catch (Exception)
