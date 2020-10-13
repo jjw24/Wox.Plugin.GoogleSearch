@@ -40,10 +40,10 @@ namespace Wox.Plugin.GoogleSearch
             
             htmlDoc.LoadHtml(response.Content.ReadAsStringAsync().Result);
 
-            var allElementsWithClassR = htmlDoc.QuerySelectorAll("div.g");
+            var allElementsWithClassG = htmlDoc.QuerySelectorAll("div.g");
 
             
-            foreach (var e in allElementsWithClassR)
+            foreach (var e in allElementsWithClassG)
             {
                 var link = e.QuerySelector("a").Attributes.FirstOrDefault(a => a.Name == "href")?.Value;
                 var title = e.QuerySelector("h3")?.InnerText;
