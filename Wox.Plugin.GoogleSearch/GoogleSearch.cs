@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -40,7 +40,7 @@ namespace Wox.Plugin.GoogleSearch
             
             htmlDoc.LoadHtml(response.Content.ReadAsStringAsync().Result);
 
-            var allElementsWithClassR = htmlDoc.QuerySelectorAll("div.r");
+            var allElementsWithClassR = htmlDoc.QuerySelectorAll("div.g");
 
             
             foreach (var e in allElementsWithClassR)
