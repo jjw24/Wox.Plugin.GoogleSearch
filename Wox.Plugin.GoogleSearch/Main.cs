@@ -12,7 +12,9 @@ namespace Wox.Plugin.GoogleSearch
     {
         private string _pluginDirectory;
 
-        private GoogleSearch _gs; 
+        private GoogleSearch _gs;
+
+        private PluginInitContext context;
 
         public List<Result> Query(Query query)
         {
@@ -30,7 +32,7 @@ namespace Wox.Plugin.GoogleSearch
                     {
                         try
                         {
-                            s.Url.NewBrowserWindow();
+                            context.API.OpenUrl(s.Url);
                             return true;
                         }
                         catch (Exception)
@@ -48,6 +50,7 @@ namespace Wox.Plugin.GoogleSearch
 
         public void Init(PluginInitContext context)
         {
+            this.context = context;
             _pluginDirectory = context.CurrentPluginMetadata.PluginDirectory;
             _gs = new GoogleSearch();
             
