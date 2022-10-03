@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  push:
+    branches-ignore:
+      - 'master'
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore -c Release
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: Wox.Plugin.GoogleSearch.zip
+        path: Output/Release/Wox.Plugin.GoogleSearch
