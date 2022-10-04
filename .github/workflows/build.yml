@@ -27,10 +27,13 @@ jobs:
       - name: Determine if publish release required
         id: publish-release
         run: |
+          $updated_ver="${{steps.updated-version.outputs.prop}}"
           $release_ver="${{ steps.fetch-latest-release.outputs.latest-release }}".replace('v','')
-          if (${{steps.updated-version.outputs.prop}} -ne $release_ver -and "${{github.ref_name}}" -eq 'master') {
+          if ($updated_ver -ne $release_ver -and "${{github.ref_name}}" -eq 'master') {
             echo "::set-output name=required::true"
           }
+          echo "Updated version is $updated_ver"
+          echo "Release version is $release_ver"
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v1
