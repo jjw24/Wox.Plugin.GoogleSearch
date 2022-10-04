@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -29,7 +29,7 @@ namespace Wox.Plugin.GoogleSearch
             query = query.Replace(' ', '+');
             var response = _client.GetAsync(BuildSearchUri(query));
             var results = ParseResponseWithHAP(response.Result).ToList();
-            
+
             return results.Take(limit);
         }
 
@@ -37,12 +37,12 @@ namespace Wox.Plugin.GoogleSearch
         {
             var htmlDoc = new HtmlDocument();
             var googleSearchResults = new List<GoogleSearchResult>();
-            
+
             htmlDoc.LoadHtml(response.Content.ReadAsStringAsync().Result);
 
             var allElementsWithClassG = htmlDoc.QuerySelectorAll("div.g");
 
-            
+
             foreach (var e in allElementsWithClassG)
             {
                 var link = e.QuerySelector("a").Attributes.FirstOrDefault(a => a.Name == "href")?.Value;
@@ -65,7 +65,7 @@ namespace Wox.Plugin.GoogleSearch
 
             return googleSearchResults;
         }
-        
+
         private static IEnumerable<GoogleSearchResult> ParseResponse(HttpResponseMessage response)
         {
             var headerRegex = new Regex("<h3.*?>.*?</h3>", RegexOptions.IgnoreCase);
@@ -82,7 +82,7 @@ namespace Wox.Plugin.GoogleSearch
                 }
 
                 var url = match.Groups[1];
-                
+
                 googleSearchResults.Add(new GoogleSearchResult()
                 {
                     Name = HttpUtility.UrlDecode(match.Groups[2].Value),
@@ -101,7 +101,7 @@ namespace Wox.Plugin.GoogleSearch
             queryString["q"] = query;
             builder.Query = queryString.ToString();
             var url = builder.ToString();
-            return url; 
+            return url;
         }
     }
 }

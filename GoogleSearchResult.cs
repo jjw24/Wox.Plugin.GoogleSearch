@@ -1,4 +1,4 @@
-﻿namespace Wox.Plugin.GoogleSearch
+namespace Wox.Plugin.GoogleSearch
 {
     public class GoogleSearchResult
     {

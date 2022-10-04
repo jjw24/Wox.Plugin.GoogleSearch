@@ -1,4 +1,4 @@
-﻿using Flow.Launcher.Plugin;
+using Flow.Launcher.Plugin;
 using Flow.Launcher.Plugin.SharedCommands;
 using System;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace Wox.Plugin.GoogleSearch
             this.context = context;
             _pluginDirectory = context.CurrentPluginMetadata.PluginDirectory;
             _gs = new GoogleSearch();
-            
+
         }
     }
 }
