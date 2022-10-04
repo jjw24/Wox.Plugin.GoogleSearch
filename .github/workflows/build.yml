@@ -55,6 +55,6 @@ jobs:
         if: steps.publish-release.outputs.required == 'true'
         with:
           files: "Wox.Plugin.GoogleSearch.zip"
-          tag_name: "v${{steps.version.outputs.prop}}"
+          tag_name: "v${{steps.updated-version.outputs.prop}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
