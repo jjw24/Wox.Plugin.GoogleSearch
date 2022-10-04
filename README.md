@@ -6,5 +6,5 @@ To download this plugin, go to the latest [release](https://github.com/jjw24/Wox
 
 Changes contained in this port:
 
-- Upgraded to .Net 6
+- Upgraded to .Net 5
 - Changed Wox's plugin library to Flow's plugin library
