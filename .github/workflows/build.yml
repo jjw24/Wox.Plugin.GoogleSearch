@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v2
 
       - name: Fetch latest release version
         id: fetch-latest-release
@@ -47,7 +47,7 @@ jobs:
           rm -r "Wox.Plugin.GoogleSearch"
 
       - name: Upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: Wox.Plugin.GoogleSearch.zip
           path: .
