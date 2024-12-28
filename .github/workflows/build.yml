@@ -42,7 +42,7 @@ jobs:
 
       - name: Build
         run: |
-          dotnet publish 'Wox.Plugin.GoogleSearch.csproj' --framework net5.0-windows  -c Release -o "Wox.Plugin.GoogleSearch"
+          dotnet publish 'Wox.Plugin.GoogleSearch.csproj' --framework net7.0-windows  -c Release -o "Wox.Plugin.GoogleSearch"
           7z a -tzip "Wox.Plugin.GoogleSearch.zip" "./Wox.Plugin.GoogleSearch/*"
           rm -r "Wox.Plugin.GoogleSearch"
 
