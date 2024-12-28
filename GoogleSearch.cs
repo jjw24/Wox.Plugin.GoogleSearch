@@ -11,8 +11,7 @@ namespace Wox.Plugin.GoogleSearch
     public class GoogleSearch
     {
         // Inspired heavily by: https://github.com/aviaryan/alfred-google-search/blob/master/src/gsearch/googlesearch.py
-        private const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
-                                         "(KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36";
+        private const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0";
 
         private readonly HttpClient _client;
 
