@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using HtmlAgilityPack;
 
@@ -23,21 +25,22 @@ namespace Wox.Plugin.GoogleSearch
             _client.DefaultRequestHeaders.UserAgent.ParseAdd(UserAgent);
         }
 
-        public IEnumerable<GoogleSearchResult> Search(string query, int limit)
+        public async Task<IEnumerable<GoogleSearchResult>> Search(string query, int limit, CancellationToken token)
         {
             query = query.Replace(' ', '+');
-            var response = _client.GetAsync(BuildSearchUri(query));
-            var results = ParseResponseWithHAP(response.Result).ToList();
+
+            var response = await _client.GetAsync(BuildSearchUri(query), token);
+            var results = await ParseResponseWithHAP(response, token);
 
             return results.Take(limit);
         }
 
-        private static IEnumerable<GoogleSearchResult> ParseResponseWithHAP(HttpResponseMessage response)
+        private static async Task<IEnumerable<GoogleSearchResult>> ParseResponseWithHAP(HttpResponseMessage response, CancellationToken token)
         {
             var htmlDoc = new HtmlDocument();
             var googleSearchResults = new List<GoogleSearchResult>();
 
-            htmlDoc.LoadHtml(response.Content.ReadAsStringAsync().Result);
+            htmlDoc.LoadHtml(await response.Content.ReadAsStringAsync(token));
 
             var allElementsWithClassG = htmlDoc.QuerySelectorAll("div.g");
 
@@ -50,12 +53,9 @@ namespace Wox.Plugin.GoogleSearch
                 if (link == null || title == null)
                     continue;
 
-                title = title.Replace("&amp;", "&");
+                title = HtmlEntity.DeEntitize(title);
 
-                Console.WriteLine("Title: " + title);
-                Console.WriteLine("Link: " + link);
-
-                googleSearchResults.Add(new GoogleSearchResult()
+                googleSearchResults.Add(new GoogleSearchResult
                 {
                     Name = title,
                     Url = link
